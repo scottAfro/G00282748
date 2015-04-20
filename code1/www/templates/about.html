@@ -1,0 +1,20 @@
+<ion-view view-title="About">
+  <ion-content ng-controller="feedController" ng-init="init()">
+    <div class="list">
+		<div ng-repeat="entry in entries" class="item">
+			<b>{{entry.title}}</b><br>
+			<span ng-bind-html="entry.contentSnippet"></span>
+		</div>
+	</div><br>	
+	<p> 
+	 This is the About page <br>
+	 Contact Us:<br>
+	 Email: adverttoyou@gmail.com<br>
+	 Facebook: AdvertToYou<br>
+	 Twitter: AdvertToYou<br>
+	 <br><br>
+	 FAQ:<br>
+	 ?????????????
+	</p>	
+  </ion-content>
+</ion-view>
