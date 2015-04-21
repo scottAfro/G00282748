@@ -12,7 +12,7 @@ angular.module('starter.directives', [])
 	  {
         var mapOptions = 
 		{
-          center: new google.maps.LatLng(53.273696, -9.051447),
+          center: new google.maps.LatLng(53.274209, -9.049152),
           zoom: 17,
           mapTypeId: google.maps.MapTypeId.ROADMAP		  
         };
@@ -27,12 +27,19 @@ angular.module('starter.directives', [])
           return false;
         });
 		
-		google.maps.event.addListener(map, 'click', function(event) 
+		google.maps.event.addListener(map, 'mousedown', function(event) 
 		{
 		  marker = new google.maps.Marker({
-			position: event.latLng,
+			position: new google.maps.LatLng(53.273696, -9.051447),
 			message: 'You have created a marker here',
-			draggable: true,
+			draggable: false,
+			map: map
+		  });
+		  
+		  marker = new google.maps.Marker({
+			position: new google.maps.LatLng(53.272936, -9.052209),
+			message: 'You have created a marker here',
+			draggable: false,
 			map: map
 		  });
 		});
