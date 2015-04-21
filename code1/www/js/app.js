@@ -39,6 +39,28 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives']
       }
     }
   })
+  
+  .state('app.directions',{
+	url: "/directions",
+	templateUrl: 'templates/directions',
+	controller: 'Geofence',
+	resolve: {
+		geofence: function ($stateParms, geofenceService, $q)
+		{
+			var geofence = geofenceService.findById($stateParams.geofenceID);
+			if(geofence)
+			{
+				return $q.when(geofence);
+			}
+			return $q.reject('Cannot find geofence with id: ' + $stateParms.geofenceID);
+		}
+	}
+  })
+  
+  .state('app.createAc',{
+	url: "/createAc",
+	templateUrl: 'templates/createAc'	
+  })
 
   .state('app.categories', {
     url: "/categories",

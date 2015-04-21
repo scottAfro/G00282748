@@ -37,9 +37,9 @@ angular.module('starter.controllers', [])
   $scope.mapCreated = function(map) {
     $scope.map = map;
   };
-
+  
   $scope.centerOnMe = function () {
-    console.log("Centering");
+    console.log("Centring");
     if (!$scope.map) {
       return;
     }
@@ -47,7 +47,7 @@ angular.module('starter.controllers', [])
     $scope.loading = $ionicLoading.show({
       content: 'Getting current location...',
       showBackdrop: false
-    });
+    });	
 
     navigator.geolocation.getCurrentPosition(function (pos) {
       console.log('Got pos', pos);
@@ -103,12 +103,3 @@ angular.module('starter.controllers', [])
 		window.open(v, "_system", "location=yes");
 	}
 });
-
-/* $scope.addContact = function()
-{
-	console.log($scope.contact);
-	$http.post('/contactList',$scope.contact).success(function(response)
-	{
-		console.log(response);
-	});
-} */
