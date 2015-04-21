@@ -42,8 +42,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives']
   
   .state('app.directions',{
 	url: "/directions",
-	templateUrl: 'templates/directions',
-	controller: 'Geofence',
+	views: {
+      'menuContent': {
+        templateUrl: 'templates/directions',
+		controller: 'Geofence'
+      }
+    },	
 	resolve: {
 		geofence: function ($stateParms, geofenceService, $q)
 		{

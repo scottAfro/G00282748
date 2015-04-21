@@ -6,24 +6,13 @@
 				Find Me
 			</a>
 	  
-		  <button>
+		  <!-- <a class="button button-icon" href="#/app/directions">
 			Directions
-		  </button>
+		  </a> -->
 	  </center>
 	  <h2><center>Welcome To The Advert</center></h2>
 	  <p><center>
 		Your One stop app that lets you see all the deals you don't know yet!
-	  </center></p>
-	  <div class="card">
-		  <div class="item item-divider item-balanced">
-			<center>Groupon RSS</center>
-		  </div>
-		  <div ng-controller="feedController" ng-init="init()" class="item item-body">					
-			<a ng-repeat="Entry in Entries" class="item" ng-click="browse(entry.link)">
-				<b>{{entry.title}}</b>
-				<span ng-bind-html="entry.contentSnippet"></span>
-			</a>			
-		  </div>		 
-	  </div>	  
+	  </center></p>	  
     </ion-content> 
 </ion-view>
