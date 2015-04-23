@@ -1,31 +1,40 @@
-var express = require('express');
-var app = express();
-
+var restify = require('restify');
 var mongojs = require('mongojs');
-var db = mongojs('contactList',['contactList']); //(dbName, collection)
-var bodyParser = require('body-parser');
+var morgan = require('morgan');
+var db = mongojs('advertdb', ['userCollection']);
+//var user = require('/user')(server, db);
 
-app.use(express.static(__dirname = '/'));
-app.use(bodyParser.json());
+//var databaseUrl = "Admin:6tfc7ygv?@ds062797.mongolab.com:62797/dummy_info";
+//var collections = ["dUser", "mobileUsers"];
+//var db = require('mongojs').connect(databaseUrl, collections);
 
-app.listen(3000);
-console.log("server running on port 3000");
+var server = restify.createServer();
 
-app.get('/contactList', function (req, res)
+server.use(restify.acceptParser(server.acceptable));
+server.use(restify.queryParser());
+server.use(restify.bodyParser());
+server.use(morgan);
+
+server.use(function(req, res, next)
 {
-	db.contactList.find(function(err, docs)
+	res.header('Access-Control-Allow-Origin',"*");
+	res.header('Access-Control-Allow-Method','GET,PUT,POST,DELETE');
+	res.header('Access-Control-Allow-Headers','Content-Type');
+	next();
+});
+
+db.userCollection.find(function(err, userCollection)
+{
+	if(err || !userCollection)
 	{
-		console.log(docs);
-		res.json(docs);
+		console.log("No business name was found");
+	}else userCollection(function(err, docs)
+	{
+		console.log(err);
 	});
 });
 
-app.post('/contactList', function(req, res)
+server.listen(process.env.PORT || 9804, function()
 {
-	console.log(res.body);
-	db.contactList.insert(req.body, function(err, doc)
-	{
-		res.json(doc);
-	})
+	console.log("Sever started @ ", process.env.PORT || 9804);
 });
-
