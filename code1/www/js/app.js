@@ -35,7 +35,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     views: {
       'menuContent': {
         templateUrl: "templates/home.html",
-		controller: 'MapCtrl'
+		      controller: 'MapCtrl'
       }
     }
   })
@@ -87,19 +87,11 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
     url: "/about",
     views: {
       'menuContent': {
-        templateUrl: "templates/about.html"
+        templateUrl: "templates/about.html",
+        controller: 'shareCntr'
       }
     }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
-})
-
-.controller("shareCntr", function($scope, $cordovaSocialSharing)
-{
-  $sscope.shareAnywhere = function()
-  {
-    //(message, title, image, url)
-    $cordovaSocialSharing.share("This is the message","This is the title", null, "https://blog.nraboy")
-  }
 });

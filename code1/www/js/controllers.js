@@ -1,6 +1,6 @@
-angular.module('starter.controllers', [])
+var cntr = angular.module('starter.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
+cntr.controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
   $scope.loginData = {};
 
@@ -31,13 +31,13 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
-})
+});
 
-.controller('MapCtrl', function($scope, $ionicLoading) {
+cntr.controller('MapCtrl', function($scope, $ionicLoading) {
   $scope.mapCreated = function(map) {
     $scope.map = map;
   };
-  
+
   $scope.centerOnMe = function () {
     console.log("Centring");
     if (!$scope.map) {
@@ -46,30 +46,32 @@ angular.module('starter.controllers', [])
 
     $scope.loading = $ionicLoading.show({
       content: 'Getting current location...',
-      showBackdrop: false
-    });	
+      showBackdrop: true
+    });
 
-    navigator.geolocation.getCurrentPosition(function (pos) {
+    navigator.geolocation.getCurrentPosition(function (pos)
+    {
       console.log('Got pos', pos);
       $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
       $scope.loading.hide();
-    }, function (error) {
+    }, function (error)
+    {
       alert('Unable to get location: ' + error.message);
     });
   };
-})
+});
 
-.controller('mongoCntr',function($scope, $stateParams, $http)
+cntr.controller('mongoCntr',function($scope, $stateParams, $http)
 {
-	$http.get('/contactList').success(function(response)	
+	$http.get('/contactList').success(function(response)
 	{
 		console.log("I got the data requested");
 		$scope.contactList = response;
 		$scope.contact = "";
-	});	
-})
+	});
+});
 
-.controller('feedController', function($http, $scope)
+cntr.controller('feedController', function($http, $scope)
 {
 	$scope.init = function()
 	{
@@ -97,9 +99,18 @@ angular.module('starter.controllers', [])
 			}
 		});
 	}
-	
+
 	$scope.browse = function(v)
 	{
 		window.open(v, "_system", "location=yes");
 	}
+});
+
+cntr.controller("shareCntr", function($scope, $cordovaSocialSharing)
+{
+  $scope.shareAnywhere = function()
+  {
+    //(message, title, image, url)
+    $cordovaSocialSharing.share("Check out the great app Here: ","AdvertToYou", null, "https://blog.nraboy")
+  }
 });
