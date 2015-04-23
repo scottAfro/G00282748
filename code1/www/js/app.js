@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives'])
+angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.directives'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -39,7 +39,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives']
       }
     }
   })
-  
+
   .state('app.directions',{
 	url: "/directions",
 	views: {
@@ -47,7 +47,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives']
         templateUrl: 'templates/directions',
 		controller: 'Geofence'
       }
-    },	
+    },
 	resolve: {
 		geofence: function ($stateParms, geofenceService, $q)
 		{
@@ -60,10 +60,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives']
 		}
 	}
   })
-  
+
   .state('app.createAc',{
 	url: "/createAc",
-	templateUrl: 'templates/createAc'	
+	templateUrl: 'templates/createAc'
   })
 
   .state('app.categories', {
@@ -81,16 +81,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.directives']
           templateUrl: "templates/settings.html"
         }
       }
-    })	
+    })
 
   .state('app.about', {
     url: "/about",
     views: {
       'menuContent': {
-        templateUrl: "templates/about.html"        
+        templateUrl: "templates/about.html"
       }
     }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/home');
+})
+
+.controller("shareCntr", function($scope, $cordovaSocialSharing)
+{
+  $sscope.shareAnywhere = function()
+  {
+    //(message, title, image, url)
+    $cordovaSocialSharing.share("This is the message","This is the title", null, "https://blog.nraboy")
+  }
 });
