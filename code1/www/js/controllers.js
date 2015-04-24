@@ -54,6 +54,12 @@ cntr.controller('MapCtrl', function($scope, $ionicLoading) {
       console.log('Got pos', pos);
       $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
       $scope.loading.hide();
+      marker = new google.maps.Marker({
+			position: new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude),
+			message: 'You have created a marker here',
+			draggable: false,
+			map: map
+		  });
     }, function (error)
     {
       alert('Unable to get location: ' + error.message);
