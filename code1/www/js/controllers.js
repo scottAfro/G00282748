@@ -117,6 +117,6 @@ cntr.controller("shareCntr", function($scope, $cordovaSocialSharing)
   $scope.shareAnywhere = function()
   {
     //(message, title, image, url)
-    $cordovaSocialSharing.share("Check out the great app Here: ","AdvertToYou", null, "https://blog.nraboy")
+    $cordovaSocialSharing.share("Check out the great app Here: ","AdvertToYou", null, "https://www.facebook.com/Adverttoyou")
   }
 });
