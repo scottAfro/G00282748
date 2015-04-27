@@ -8,12 +8,12 @@ module.exports.cryptPassword = function(password, callback)
 		{
 			return callback(err);
 		}
-		
+
 		bcrypt.hash(password, salt, function()
 		{
 			return callback(err, hash);
 		});
-	});	
+	});
 };
 
 module.exports.comparePassword = function (password, usrPassword, callback)

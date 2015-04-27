@@ -9,8 +9,8 @@ module.exports = function(server, db)
 	{
 		unique: true
 	})
-	
-	server.post('', function(req, res, next)
+
+	server.post('/api/v1/code1/js/register', function(req, res, next)
 	{
 		var usr = req.parms;
 		pass.cryptPassword(usr.password, function(err, hash)
@@ -30,11 +30,11 @@ module.exports = function(server, db)
 					{
 						error: err,
 						message: "A user with this email already exists"
-					}));					
+					}));
 				}else{
 					res.writeHead(200,
 					{
-						'Content-Type': 'application/json; charset=utf-8'						
+						'Content-Type': 'application/json; charset=utf-8'
 					});
 					dbUser.password = "";
 					res.end(JSON.stringify(dbUser));
@@ -43,8 +43,8 @@ module.exports = function(server, db)
 		});
 		return next();
 	});
-	
-	server.post('',function(req, res, next)
+
+	server.post('/api/v1/code1/js/login',function(req, res, next)
 	{
 		var usr = req.parms;
 		if(uusr.email.trim().length == 0 || usr.password.trim().length == 0)
@@ -53,7 +53,7 @@ module.exports = function(server, db)
 			{
 				'Content-Type': 'application/json; charset=utf-8'
 			});
-			
+
 			res.end(JSON.stringify(
 			{
 				error: "Invalid Credentials"
@@ -81,7 +81,7 @@ module.exports = function(server, db)
 					{
 						'Content-Type': 'application/json; charset=utf-8'
 					});
-					
+
 					res.end(JSON.stringify(
 					{
 						error: "Invalid User"

@@ -2,7 +2,7 @@ var restify = require('restify');
 var mongojs = require('mongojs');
 var morgan = require('morgan');
 var db = mongojs('advertdb', ['userCollection']);
-//var user = require('/user')(server, db);
+var user = require('./user')(server, db);
 
 //var databaseUrl = "Admin:6tfc7ygv?@ds062797.mongolab.com:62797/dummy_info";
 //var collections = ["dUser", "mobileUsers"];
@@ -13,7 +13,7 @@ var server = restify.createServer();
 server.use(restify.acceptParser(server.acceptable));
 server.use(restify.queryParser());
 server.use(restify.bodyParser());
-server.use(morgan);
+server.use(morgan('./'));
 
 server.use(function(req, res, next)
 {
