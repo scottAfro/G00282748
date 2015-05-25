@@ -1,12 +1,12 @@
 var restify = require('restify');
 var mongojs = require('mongojs');
 var morgan = require('morgan');
-var db = mongojs('advertdb', ['userCollection']);
+//var db = mongojs('advertdb', ['userCollection']);
 var user = require('./user')(server, db);
 
-//var databaseUrl = "Admin:6tfc7ygv?@ds062797.mongolab.com:62797/dummy_info";
-//var collections = ["dUser", "mobileUsers"];
-//var db = require('mongojs').connect(databaseUrl, collections);
+var databaseUrl = "Admin:6tfc7ygv?@ds062797.mongolab.com:62797/dummy_info";
+var collections = ("dUser");
+var db = require('mongojs').connect(databaseUrl, collections);
 
 var server = restify.createServer();
 
@@ -34,7 +34,7 @@ db.userCollection.find(function(err, userCollection)
 	});
 });
 
-server.listen(process.env.PORT || 9804, function()
+/*server.listen(process.env.PORT || 9804, function()
 {
 	console.log("Sever started @ ", process.env.PORT || 9804);
-});
+});*/
